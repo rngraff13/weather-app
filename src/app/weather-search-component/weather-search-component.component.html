@@ -1,0 +1,31 @@
+<div style="margin:auto; width: 40%;">
+    <mat-form-field appearance="fill">
+        <mat-label>Search Type</mat-label>
+        <mat-select [(value)]="searchType">
+            <mat-option value="city">City Name</mat-option>
+            <mat-option value="zip">Zip Code</mat-option>
+            <mat-option value="gps">GPS</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>{{searchType}}</mat-label>
+        <input matInput type="text" [(ngModel)]="searchString">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="search()">Search</button>
+
+    <div id="weather-display" *ngIf="result">
+        <mat-card style="background-color: lightgray;">
+            <mat-card-header>
+                <mat-card-title>Weather for {{searchString}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <img style="display: block;width: 25%; margin: auto; background-color:aquamarine; border-radius: 25px;" src="{{weatherIcon}}" alt="{{result.weather[0].description}}" title="{{result.weather[0].description}}">
+                <hr>
+                <p style="font-size: large;"><strong>Current Temp: </strong>{{result.main.temp}}&#8457;</p>
+                <p><strong style="color:rgba(255, 115, 0, 0.863);">High: </strong>{{result.main.temp_max}}&#8457;</p>
+                <p><strong style="color:aqua;">Low: </strong>{{result.main.temp_min}}&#8457;</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
